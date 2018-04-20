@@ -1,0 +1,40 @@
+#### Uncomment this first if you do not have a pre-existing inventory db
+####  Find some clever way to populate your fqdns 
+## CREATE TABLE `device` (
+##   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+##   `fqdm` varchar(40) NOT NULL,
+##   PRIMARY KEY (`id`),
+##   UNIQUE KEY `fqdn` (`id`)
+## ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `packages` (
+  `host_id` int(11) NOT NULL,
+  `pkg_id` int(10) unsigned NOT NULL,
+  `pkg_version_id` int(10) unsigned NOT NULL,
+  `status` char(3) DEFAULT NULL,
+  `arch` varchar(16) DEFAULT NULL,
+  `installed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `removed` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `source` varchar(16) DEFAULT 'apt',
+  PRIMARY KEY (`host_id`,`pkg_id`,`pkg_version_id`),
+  KEY `fk_pkg_version_id` (`pkg_version_id`),
+  KEY `fk_pkg_id` (`pkg_id`),
+  CONSTRAINT `fk_pkg_id` FOREIGN KEY (`pkg_id`) REFERENCES `pkg_enum` (`pkg_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_host_id` FOREIGN KEY (`host_id`) REFERENCES `device` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_pkg_version_id` FOREIGN KEY (`pkg_version_id`) REFERENCES `pkg_version_enum` (`pkg_version_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `pkg_enum` (
+  `pkg_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pkg_name` varchar(80) NOT NULL,
+  PRIMARY KEY (`pkg_id`),
+  UNIQUE KEY `name` (`pkg_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `pkg_version_enum` (
+  `pkg_version_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pkg_version` varchar(40) NOT NULL,
+  PRIMARY KEY (`pkg_version_id`),
+  UNIQUE KEY `version` (`pkg_version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
