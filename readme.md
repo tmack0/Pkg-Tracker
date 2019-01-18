@@ -70,7 +70,7 @@ It only works with add, and expects the output of a dpkg -l command piped direct
 To search, run the utility with "get". Use % as a wildcard character.
 
 ```
-# pkg_tracker.ph get --pkg openssl
+# pkg_tracker.py get --pkg openssl
 fqdn	status	arch	source	installed	modified	removed	pkg_version	pkg_name
 host1.fqdn 15:36:59	2018-03-06 15:36:59	None	1.0.2l-1~bpo8+1	openssl
 host2.fqdn 15:37:00	2018-03-06 15:37:00	None	1.0.2l-1~bpo8+1	openssl
@@ -82,7 +82,7 @@ host4.fqdn 15:37:03	2018-03-06 15:37:03	None	1.0.2l-1~bpo8+1	openssl
 Add attributes to filter more things
 
 ```
-# pkg_tracker.ph get --pkg libperl% --fqdn %some%
+# pkg_tracker.py get --pkg libperl% --fqdn %some%
 fqdn	status	arch	source	installed	modified	removed	pkg_version	pkg_name
 some.host1 15:36:43	2018-03-06 15:36:43	None	0.003-1	libperl4-corelibs-perl
 some.other 15:36:43	2018-03-06 12:11:26	None	5.20.2-3+deb8u9	libperl5.20
