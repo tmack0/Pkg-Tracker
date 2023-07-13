@@ -7,7 +7,8 @@ A utility that tracks the history of packages installed on Debian systems using 
 This provides a quick and easy way to find what packages are installed where,
 of what versions, and when they were installed/updraded/deleted. The utility itself mostly
 executes mysql queries, and does not do any of the data-gathering itself, but that is easy
-enough and documented here-in.
+enough and documented here-in. To actually get historical tracking, the data ingests need to
+run periodically on all hosts and fed into this util.
 
 ## Features
 
