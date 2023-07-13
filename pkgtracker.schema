@@ -2,7 +2,7 @@
 ####  Find some clever way to populate your fqdns 
 ## CREATE TABLE `device` (
 ##   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-##   `fqdm` varchar(40) NOT NULL,
+##   `fqdn` varchar(40) NOT NULL,
 ##   PRIMARY KEY (`id`),
 ##   UNIQUE KEY `fqdn` (`id`)
 ## ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
