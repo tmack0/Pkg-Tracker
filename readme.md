@@ -8,7 +8,9 @@ This provides a quick and easy way to find what packages are installed where,
 of what versions, and when they were installed/updraded/deleted. The utility itself mostly
 executes mysql queries, and does not do any of the data-gathering itself, but that is easy
 enough and documented here-in. To actually get historical tracking, the data ingests need to
-run periodically on all hosts and fed into this util.
+run periodically on all hosts and fed into this util. Note also that feeding this with
+dpkg -l output will only provide point-in-time tracking, and could miss actions done between
+runs. Parsing the dpkg.log and apt/history.log files would be better.
 
 ## Features
 
